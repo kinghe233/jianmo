@@ -8,10 +8,11 @@ rand('state',sum(clock));
 p=0;
 for i=1:10^6
     x=randi([0,99],1,5);
+    [f,g]=Untitled3(x);
     if all(g<=0)
         if p<f
             p=f;x0=x;
         end
     end
 end
-p
+p,x0
