@@ -1,0 +1,56 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node;
+typedef struct node* ptrtonode;
+typedef  ptrtonode list;
+typedef  ptrtonode position;
+struct node
+{
+	int ele;
+	ptrtonode  next;
+};
+void printarray(list l)
+{
+	position p;
+	p = l;
+	while(p->next != NULL)
+	{
+		printf("%d", p->next->ele);
+		p = p->next;
+	}
+}
+list creatlist(void)
+{
+	list l;
+	l = (list)malloc(sizeof(struct node));
+	if (l == NULL)
+	{
+		printf("out of space");
+		return 0;
+	}
+	l->next = 0;
+	return l;
+}
+void insert(list l, int x, position p)
+{	position tmpcell;
+	tmpcell = (ptrtonode)malloc(sizeof(struct node));
+	if (tmpcell == NULL)
+	{
+		printf("out of space");
+		return;
+	}
+	tmpcell->ele = x;
+	tmpcell->next = p->next;
+	p->next = tmpcell;
+}
+int main()
+{
+	list l;
+	l = creatlist();
+	for (int i = 1; i < 11; i++)
+	{
+		insert(l, i,l);
+	}
+	printarray(l);
+	return 0;
+}
