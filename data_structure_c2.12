@@ -1,0 +1,27 @@
+#include<stdio.h>
+typedef struct
+{
+    int* array;
+    int length;
+    int listsize;
+}sqlist;
+typedef struct lnode
+{
+    int data;
+    struct lnode* next;
+}lnode,*linklist;
+sqlist compare(sqlist &A, sqlist& B)
+{
+    int a=0,b=0,k;
+    A.length > B.length ?k= B.length: A.length;//判断最多循环次数
+    int i = 0;
+    for (i; i <= k - 1; i++)
+        while (A.array[i] != B.array[i])
+        {
+            {a = A.array[i]; break; }
+            {b = B.array[i]; break; }
+        }//判断子表首元谁大
+    if (a == b)return(equal);
+    if (a > b)return(Abig);
+    if (a < b)return(Bbig);
+}
