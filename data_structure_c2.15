@@ -1,0 +1,20 @@
+void connectlist(linklist& ha, linklist& hb,int m,int n)
+//连接两个链表,并且将元素少的放到前面，将元素多的放在后面
+{
+    if (m <= n)
+    {
+        linklist a;
+        a = ha;
+        while (a->next != NULL)a = a->next;
+        a->next = hb->next;
+        free(hb);
+    }
+    else
+    {
+        linklist b;
+        b = hb;
+        while (b->next != NULL)b = b->next;
+        b->next = ha->next;
+        free(ha);
+    }
+}
