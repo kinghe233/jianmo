@@ -1,0 +1,30 @@
+void delete_and_insert(linklist &la,linklist &lb,int i,int j,int len)
+{
+    linklist a, b;
+    a = la; b = lb;
+    int count = 2;
+    while (count != i) 
+    {
+        count++;
+        a = a->next;
+    }//此时a->next为第i个节点
+    listlink temp_a=a;
+    //找到lb链表中b->next是第j个元素的位置
+    count = 2;
+    while (count != j)
+    {
+        b = b->next;
+        count++;
+    }
+    //完成插入
+    count = 0;
+    while (count != len)
+    {
+        linklist p = a;
+        p->next->next = b->next;
+        b->next = p->next;
+        a = a->next;
+        count++;
+    }
+ temp_a->next=a->next->next;//完成删除
+}
