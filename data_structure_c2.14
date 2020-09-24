@@ -1,0 +1,14 @@
+int length(linklist& l)
+//返回链表的长度
+{
+    if (l == NULL)
+        return 0;
+    int count = 0;//设定计数器
+    linklist p = l;
+    while (p->next != NULL)
+    {
+        p = p->next;
+        count++;
+    }
+    return count;
+}
