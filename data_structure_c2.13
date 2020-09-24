@@ -1,0 +1,37 @@
+#include<stdio.h>
+#include<malloc.h>
+#include<stdlib.h>
+typedef struct
+{
+    int* array;
+    int length;
+    int listsize;
+}sqlist;
+typedef struct lnode
+{
+    int data;
+    struct lnode* next;
+}lnode,*linklist;
+linklist locate(linklist& l, int x)
+//找到在链表l中第一个值为x的元素，若找到则返回当前指针域，若无则返回0
+{
+    if (l == NULL)
+        return NULL;
+    linklist p;
+    p = l;
+    while (p->next->data!=x)
+        p = p->next;
+    return p;
+}
+void createlist(linklist& l,int n)
+{//采用逆序法初始化链表
+    l = (linklist)malloc(sizeof(lnode));
+    l->next = NULL;
+    for (int i = n; i > 0; i--)
+    {
+        linklist p = (linklist)malloc(sizeof(lnode));
+        scanf_s("%d", &p->data);
+        p->next = l->next;//用这种方法初始化链表有点类似于在表头L后逐个插入新元素
+        l->next = p;
+    }
+}
