@@ -1,0 +1,39 @@
+int deleminnode_myself(linklist l)
+{
+    linklist p = l;
+    if (p->next == NULL)
+        return 0;
+    int min = p->next->data;//设定首元节点的值为最小值
+    while (p->next->next != NULL)
+    {
+        if (min > p->next->next->data)
+            min = p->next->next->data;//通过遍历找到链表中结点的最小值
+      p = p->next;
+    }
+    p = l;
+    while (p->next->data != min)
+    {
+        p = p->next;//再次通过遍历找到最小值对应的第一个结点
+    }
+    linklist q = p ->next;
+    p->next = p->next->next;//删除第一个最小值的结点
+    free(q);
+}
+int  deleminnode_reference(linklist l)
+{
+    linklist p=l->next, prev=l, minp=p, minprev=prev;//p指向首元节点，prev指向p的前驱结点，minp指向首元节点，minprev指向minp的前驱结点
+    if (p->next == NULL)
+        return 0;
+    while (p->next != NULL)
+    {
+        if (minp->data > p->data)
+        {
+            minp = p;
+            minprev = prev;//遍历，minp指向值最小的结点
+        }
+        prev = p;
+        p = p->next;
+    }
+    minprev->next = minp->next;//删除值最小的结点
+    free(minp);
+}//答案只通过遍历将值最小的结点的结点地址和前驱结点地址保存下来，随后即进行了删除，而我先通过一次遍历找到了最小值，有一次遍历找到对应的节点地址，使问题变得繁琐。
